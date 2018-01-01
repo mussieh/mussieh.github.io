@@ -55,7 +55,6 @@ function main() {
 
     }
 
-    alert(document.location.href.indexOf("projects") != -1);
     if (document.location.href.indexOf("projects") != -1) {
 
         window.addEventListener("scroll", function() {
