@@ -1,7 +1,1 @@
-"use strict";
-Storage.prototype.setObj = function(key, obj) {
-    return this.setItem(key, JSON.stringify(obj))
-}
-Storage.prototype.getObj = function(key) {
-    return JSON.parse(this.getItem(key))
-}
+Storage.prototype.setObj=function(a,b){return this.setItem(a,JSON.stringify(b))};Storage.prototype.getObj=function(a){return JSON.parse(this.getItem(a))};
