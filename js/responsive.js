@@ -3,7 +3,6 @@
 window.onload = main;
 
 function main() {
-    alert("hi");
     var timer;
     var projectVideos = document.getElementsByClassName("iplay");
     var numberOfViews = projectVideos.length;
