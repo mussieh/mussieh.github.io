@@ -1,3 +1,52 @@
-window.addEventListener("load",setupPage);function setupPage(){document.getElementById("encButton").addEventListener("click",encrypt)}
-function encrypt(){var a=strip(document.getElementById("textP").value),f=window.sessionStorage.getObj("dimension"),e=[],d,b;if(""==a)alert("Please input a text to be encrypted.");else{if(2==f){a=getDigrams(a);a=getColumnVectors(a,2);b=getPremodMatrix(a,2);for(var c in b)a=b[c][0],d=b[c][1],e.push([a%26,d%26])}else{a=getTrigraph(a);a=getColumnVectors(a,3);b=getPremodMatrix(a,3);var g;for(c in b)a=b[c][0],g=b[c][1],d=b[c][2],e.push([a%26,g%26,d%26])}document.getElementById("encT").innerHTML=reverseSearch(e,
-f).toString().replace(/,/ig," ")}};
+"use strict";
+window.addEventListener("load", setupPage);
+
+function setupPage() {
+  document.getElementById("encButton").addEventListener("click", encrypt);
+}
+
+function encrypt() {
+
+  var plainT = strip(document.getElementById("textP").value);
+  var dimension = window.sessionStorage.getObj("dimension");
+  var encryptedArray = [];
+  var columnVectors;
+  var topElement;
+  var bottomElement;
+  var premodMatrix;
+
+
+  if ( plainT == "" ) {
+    alert("Please input a text to be encrypted.");
+  }
+  else {
+
+    if ( dimension == 2 ) {
+      var digrams = getDigrams(plainT);
+      columnVectors = getColumnVectors(digrams, 2);
+      premodMatrix = getPremodMatrix(columnVectors, 2);
+
+      for (var i in premodMatrix) {
+        topElement = premodMatrix[i][0];
+        bottomElement = premodMatrix[i][1];
+        encryptedArray.push( [topElement % 26, bottomElement % 26] );
+      } 
+    }
+    else {
+      var trigraph = getTrigraph(plainT);
+      columnVectors = getColumnVectors(trigraph, 3);
+      premodMatrix = getPremodMatrix(columnVectors, 3);
+      var middleElement;
+
+      for (var i in premodMatrix) {
+        topElement = premodMatrix[i][0];
+        middleElement = premodMatrix[i][1];
+        bottomElement = premodMatrix[i][2];
+        encryptedArray.push( [topElement % 26, middleElement % 26, bottomElement % 26] );
+      }       
+    }
+    
+  document.getElementById("encT").innerHTML = 
+              reverseSearch(encryptedArray, dimension).toString().replace(/,/ig, " ");
+  }
+}
