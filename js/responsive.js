@@ -74,6 +74,7 @@ function main() {
                         if (videoPausedStatus == false) {} // if playing, do nothing
                         else {
                             projectVideos[counter].play();
+                            console.log(counter);
                         }
                     }
 
@@ -81,6 +82,7 @@ function main() {
                     else {
                         if (videoPausedStatus == false) {  // if playing, pause
 							projectVideos[counter].pause();
+                            console.log(counter);
                         }
                     }
                 }
