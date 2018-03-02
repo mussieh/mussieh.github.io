@@ -55,9 +55,7 @@ function main() {
 
     }
 
-    alert(document.location.href);
-
-    if (document.location.href.indexOf("projects.html") != -1) {
+    if (document.location.href.indexOf("https://mussieh.github.io/projects") != -1) {
 
         window.addEventListener("scroll", function() {
             if (timer) {
